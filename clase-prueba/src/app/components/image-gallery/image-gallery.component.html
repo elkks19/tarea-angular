@@ -1,0 +1,26 @@
+<div class="gallery-container">
+  <h2>Galería de Imágenes</h2>
+
+  <!-- Cargando -->
+  <div *ngIf="isLoading" class="loading">
+    <p>Cargando Imágenes...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+    <button (click)="loadImages()">Reintentar</button>
+  </div>
+
+  <!-- Galería -->
+  <div class="gallery-grid" *ngIf="!isLoading && !error">
+    <div class="image-card" *ngFor="let image of images" (click)="showImageDetails(image.id)">
+      <img [src]="'https://picsum.photos/id/' + image.id + '/300/200'" [alt]="image.author">
+      <div class="image-info">
+        <h3>Rafael Fabiani</h3>
+        <p>Ancho: {{ image.width }} px</p>
+        <p>Alto: {{ image.height }} px</p>
+      </div>
+    </div>
+  </div>
+</div>

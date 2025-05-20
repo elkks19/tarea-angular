@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>Lista de Pokémon</h2>
+
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="offset === 0">← Anterior</button>
+    <button (click)="nextPage()" [disabled]="offset + limit >= totalCount">
+      Siguiente →
+    </button>
+  </div>
+
+  <ul class="pokemon-list">
+    <li *ngIf="loadingList" class="loading">Cargando lista…</li>
+
+    <li *ngFor="let p of pokemons" class="pokemon-card">
+      <img
+        [src]="getSpriteUrl(p.id)"
+        [alt]="p.name"
+        loading="lazy"
+      />
+      <span class="pokemon-name">{{ p.name | titlecase }}</span>
+    </li>
+  </ul>
+</div>
